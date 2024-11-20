@@ -1,3 +1,3 @@
-CREATE USER "springuser" WITH PASSWORD 'springpassword';
+CREATE USER "user" WITH PASSWORD 'password';
 CREATE DATABASE "cars";
-GRANT ALL PRIVILEGES ON DATABASE "cars" TO "springuser";
+GRANT ALL PRIVILEGES ON DATABASE "cars" TO "user";

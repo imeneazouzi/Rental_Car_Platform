@@ -46,12 +46,13 @@
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
+
+		<!-- SpringDoc OpenAPI (compatible with Spring Boot 3.x) -->
 		<dependency>
 			<groupId>org.springdoc</groupId>
 			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-			<version>2.0.0</version>
+			<version>2.2.0</version> <!-- Version compatible avec Spring Boot 3.x -->
 		</dependency>
-
 
 		<!-- Spring Boot Test -->
 		<dependency>

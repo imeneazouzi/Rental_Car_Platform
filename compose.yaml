@@ -2,15 +2,15 @@ version: '3.5'
 
 services:
   postgres:
-    container_name: springboot_postgres
-    image: postgres:16
+    container_name: RentalCars
+    image: postgres:latest
     environment:
-      POSTGRES_USER: springuser
-      POSTGRES_PASSWORD: springpassword
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
       POSTGRES_DB: cars
     volumes:
       - ./postgres-data:/var/lib/postgresql/data
-      - ./init-db.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./init-db.sql:/docker-entrypoint-initdb.d/db.sql
     ports:
       - "5432:5432"
     restart: unless-stopped
