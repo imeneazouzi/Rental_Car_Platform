@@ -2,15 +2,18 @@ version: '3.5'
 
 services:
   postgres:
-    container_name: RentalCars
-    image: postgres:latest
+    container_name: postgres_container
+    image: postgres:17
     environment:
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: password
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: imene123
       POSTGRES_DB: cars
+      PGDATA: /data/cars
+      LISTEN_ADDRESSES: '*'
     volumes:
       - ./postgres-data:/var/lib/postgresql/data
       - ./init-db.sql:/docker-entrypoint-initdb.d/db.sql
+
     ports:
-      - "5432:5432"
+      - "5433:5432"
     restart: unless-stopped

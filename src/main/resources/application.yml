@@ -1,10 +1,9 @@
+
 spring:
   profiles:
     active: dev
-
   application:
-    name: car-rental-service
-
+    name: application
   jpa:
     generate-ddl: true
     hibernate:
@@ -13,11 +12,10 @@ spring:
       hibernate:
         format_sql: true
         dialect: org.hibernate.dialect.PostgreSQLDialect
-
   datasource:
-    url: jdbc:postgresql://RentalCars:5432/cars  # URL corrigée sans redondance
-    username: user  # Utilisez l'utilisateur que vous avez configuré dans votre conteneur
-    password: password  # Utilisez le mot de passe que vous avez configuré
+    url: jdbc:postgresql://localhost:5433/cars
+    username: postgres
+    password: imene123
     driver-class-name: org.postgresql.Driver
     hikari:
       maximum-pool-size: 10
@@ -25,3 +23,4 @@ spring:
 server:
   address: 0.0.0.0
   port: 8080
+  context-path: /api

@@ -1,3 +1,3 @@
-CREATE USER "user" WITH PASSWORD 'password';
+CREATE USER "postgres" with password 'imene123';
 CREATE DATABASE "cars";
-GRANT ALL PRIVILEGES ON DATABASE "cars" TO "user";
+GRANT ALL PRIVILEGES ON DATABASE "cars" to "postgres";
