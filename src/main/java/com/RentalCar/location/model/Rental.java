@@ -5,21 +5,26 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
+import java.time.LocalDate;
+
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
-public class Car {
+@Entity
+public class Rental {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String model;
-    private String brand;
-    private int year;
-    private double pricePerDay;
+
     @ManyToOne
-    @JoinColumn(name = "owner_id")
-    private Owner owner;
+    @JoinColumn(name = "car_id")
+    private Car car;
 
+    @ManyToOne
+    @JoinColumn(name = "client_id")
+    private Client client;
 
+    private LocalDate startDate;
+    private LocalDate endDate;
+    private double totalPrice;
 }

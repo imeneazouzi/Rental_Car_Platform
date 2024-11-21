@@ -5,21 +5,22 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class Car {
+public class Owner {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String model;
-    private String brand;
-    private int year;
-    private double pricePerDay;
-    @ManyToOne
-    @JoinColumn(name = "owner_id")
-    private Owner owner;
 
+    private String firstName;
+    private String lastName;
+    private String email;
+    private String phone;
 
+    @OneToMany(mappedBy = "owner")
+    private List<Car> carsOwned;
 }
