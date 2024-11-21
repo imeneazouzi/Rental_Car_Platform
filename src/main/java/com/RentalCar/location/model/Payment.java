@@ -24,5 +24,8 @@ public class Payment {
     private String paymentMethod;
     private LocalDate paymentDate;
     private String paymentStatus;
+    @ManyToOne
+    @JoinColumn(name = "client_id")
+    private Client client;
 }
 

@@ -1,5 +1,6 @@
 package com.RentalCar.location.services;
 
+import com.RentalCar.location.model.Client;
 import com.RentalCar.location.model.Payment;
 import com.RentalCar.location.repository.PaymentRepository;
 import org.springframework.stereotype.Service;
@@ -30,8 +31,8 @@ public class PaymentService {
         return paymentRepository.findById(id);
     }
 
-    public List<Payment> getPaymentsByClientId(Long clientId) {
-        return paymentRepository.findByClientId(clientId);
+    public List<Payment> getPaymentsByClient(Client client) {
+        return paymentRepository.findByClient(client);  // Utilisation correcte du service
     }
 
     public Payment updatePayment(Long id, Payment paymentDetails) {
