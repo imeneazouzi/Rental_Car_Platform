@@ -1,4 +1,4 @@
-package model;
+package com.RentalCar.location.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

@@ -1,9 +1,9 @@
-package services;
+package com.RentalCar.location.services;
 
-import model.Car;
+import com.RentalCar.location.model.Car;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import repository.CarRepository;
+import com.RentalCar.location.repository.CarRepository;
 
 import java.util.List;
 import java.util.Optional;

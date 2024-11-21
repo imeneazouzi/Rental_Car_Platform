@@ -1,5 +1,5 @@
-package repository;
-import model.Car;
+package com.RentalCar.location.repository;
+import com.RentalCar.location.model.Car;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import java.util.List;

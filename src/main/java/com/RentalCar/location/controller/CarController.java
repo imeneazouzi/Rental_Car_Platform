@@ -1,10 +1,9 @@
-package controller;
+package com.RentalCar.location.controller;
 
-import model.Car;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.RentalCar.location.model.Car;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import services.CarService;
+import com.RentalCar.location.services.CarService;
 
 import java.util.List;
 
@@ -12,10 +11,14 @@ import java.util.List;
 @RequestMapping("/cars")
 public class CarController {
 
-    @Autowired
+
     private CarService carService;
 
-    @PostMapping
+    public CarController(CarService carservice) {
+        this.carService = carservice;
+    }
+
+    @PostMapping("/")
     public ResponseEntity<Car> addCar(@RequestBody Car car) {
         return ResponseEntity.ok(carService.addCar(car));
     }

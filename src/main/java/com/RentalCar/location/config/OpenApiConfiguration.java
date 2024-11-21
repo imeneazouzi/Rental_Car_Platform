@@ -1,4 +1,4 @@
-package config;
+package com.RentalCar.location.config;
 
 import org.springdoc.core.models.GroupedOpenApi;
 import org.springframework.context.annotation.Bean;
@@ -11,7 +11,6 @@ public class OpenApiConfiguration {
     public GroupedOpenApi publicApi() {
         return GroupedOpenApi.builder()
                 .group("Car API")
-                .packagesToScan("controller")
                 .pathsToMatch("/**")
                 .build();
     }
