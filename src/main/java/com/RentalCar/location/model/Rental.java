@@ -27,4 +27,5 @@ public class Rental {
     private LocalDate startDate;
     private LocalDate endDate;
     private double totalPrice;
+    private boolean completed;
 }
