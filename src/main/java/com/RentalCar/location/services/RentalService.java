@@ -44,10 +44,12 @@ public class RentalService {
         return rentalRepository.save(existingRental);
     }
 
-    public void deleteRental(Long id) {
-        if (!rentalRepository.existsById(id)) {
-            throw new RuntimeException("Rental not found with ID: " + id);
+
+    public void deleteRentalById(Long id) {
+        if (rentalRepository.existsById(id)) {
+            rentalRepository.deleteById(id);
+        } else {
+            throw new RuntimeException("Rental not found with id " + id);
         }
-        rentalRepository.deleteById(id);
     }
 }

@@ -38,10 +38,11 @@ public class ClientService {
         return clientRepository.save(existingClient);
     }
 
-    public void deleteClient(Long id) {
-        if (!clientRepository.existsById(id)) {
-            throw new RuntimeException("Client not found with ID: " + id);
+    public void deleteClientById(Long id) {
+        if (clientRepository.existsById(id)) {
+            clientRepository.deleteById(id);
+        } else {
+            throw new RuntimeException("Client not found with id " + id);
         }
-        clientRepository.deleteById(id);
     }
 }

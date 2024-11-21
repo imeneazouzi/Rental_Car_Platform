@@ -38,10 +38,12 @@ public class OwnerService {
         return ownerRepository.save(existingOwner);
     }
 
-    public void deleteOwner(Long id) {
-        if (!ownerRepository.existsById(id)) {
-            throw new RuntimeException("Owner not found with ID: " + id);
+
+    public void deleteOwnerById(Long id) {
+        if (ownerRepository.existsById(id)) {
+            ownerRepository.deleteById(id);
+        } else {
+            throw new RuntimeException("Owner not found with id " + id);
         }
-        ownerRepository.deleteById(id);
     }
 }

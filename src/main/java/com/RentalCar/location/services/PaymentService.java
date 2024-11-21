@@ -42,10 +42,12 @@ public class PaymentService {
         return paymentRepository.save(existingPayment);
     }
 
-    public void deletePayment(Long id) {
-        if (!paymentRepository.existsById(id)) {
-            throw new RuntimeException("Payment not found with ID: " + id);
+
+    public void deletePaymentById(Long id) {
+        if (paymentRepository.existsById(id)) {
+            paymentRepository.deleteById(id);
+        } else {
+            throw new RuntimeException("Payment not found with id " + id);
         }
-        paymentRepository.deleteById(id);
     }
 }
