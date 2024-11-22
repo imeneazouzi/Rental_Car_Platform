@@ -17,6 +17,7 @@ public class Car {
     private String brand;
     private int year;
     private double pricePerDay;
+    private boolean available;
     @ManyToOne
     @JoinColumn(name = "owner_id")
     private Owner owner;

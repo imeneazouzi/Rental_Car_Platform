@@ -51,4 +51,14 @@ public class CarController {
         carService.deleteAllCars();
         return ResponseEntity.noContent().build();
     }
+    @PatchMapping("/{id}/availability")
+    public ResponseEntity<String> updateAvailability(@PathVariable Long id, @RequestParam boolean available) {
+        carService.updateCarAvailability(id, available);
+        return ResponseEntity.ok("Car availability updated");
+    }
+    @GetMapping("/available")
+    public List<Car> getAvailableCars() {
+        return carService.getAvailableCars();
+    }
+
 }

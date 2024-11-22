@@ -50,6 +50,17 @@ public class CarService {
         }
         carRepository.deleteById(id);
     }
+    public void updateCarAvailability(Long carId, boolean available) {
+        Car car = carRepository.findById(carId)
+                .orElseThrow(() -> new IllegalArgumentException("Car not found with id: " + carId));
+        car.setAvailable(available);
+        carRepository.save(car);
+    }
+    public List<Car> getAvailableCars() {
+        return carRepository.findByAvailableTrue();
+    }
+
+
 
     public void deleteAllCars() {
         carRepository.deleteAll();
