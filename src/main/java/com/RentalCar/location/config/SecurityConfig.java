@@ -9,22 +9,26 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.beans.factory.annotation.Value;
 
 @Configuration
 public class SecurityConfig {
 
+    @Value("${app.security.default-password}")
+    private String defaultPassword;
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(csrf -> csrf.disable()) // Désactive CSRF pour les APIs REST
+                .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/cars/**").authenticated() // Nécessite une authentification
-                        .anyRequest().permitAll() // Autorise les autres endpoints
+                        .requestMatchers("/cars/**").authenticated()
+                        .anyRequest().permitAll()
                 )
-                .httpBasic(httpBasic -> httpBasic.realmName("RentalCar")) // HTTP Basic avec un nom de domaine personnalisé
+                .httpBasic(httpBasic -> httpBasic.realmName("RentalCar"))
                 .logout(logout -> logout.logoutUrl("/logout").logoutSuccessHandler((request, response, authentication) -> {
                     response.setStatus(200);
-                })); // Configuration de déconnexion sans méthode dépréciée
+                }));
 
         return http.build();
     }
@@ -33,11 +37,11 @@ public class SecurityConfig {
     public UserDetailsService userDetailsService(PasswordEncoder passwordEncoder) {
         return new InMemoryUserDetailsManager(
                 User.withUsername("client")
-                        .password(passwordEncoder.encode("password"))
+                        .password(passwordEncoder.encode(defaultPassword))
                         .roles("CLIENT")
                         .build(),
                 User.withUsername("owner")
-                        .password(passwordEncoder.encode("password"))
+                        .password(passwordEncoder.encode(defaultPassword))
                         .roles("OWNER")
                         .build()
         );
