@@ -1,10 +1,12 @@
 package com.RentalCar.location.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -21,6 +23,7 @@ public class Owner {
     private String email;
     private String phone;
 
-    @OneToMany(mappedBy = "owner")
-    private List<Car> carsOwned;
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
+    private List<Car> carsOwned = new ArrayList<>();
 }

@@ -1,6 +1,9 @@
 package com.RentalCar.location.controller;
 
 import com.RentalCar.location.model.Car;
+import com.RentalCar.location.model.Owner;
+import com.RentalCar.location.repository.CarRepository;
+import com.RentalCar.location.repository.OwnerRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.RentalCar.location.services.CarService;
@@ -13,9 +16,13 @@ public class CarController {
 
 
     private CarService carService;
+    private CarRepository carRepository;
+    private OwnerRepository ownerRepository;
 
-    public CarController(CarService carservice) {
+    public CarController(CarService carservice,CarRepository carRepository, OwnerRepository ownerRepository) {
         this.carService = carservice;
+        this.carRepository=carRepository;
+        this.ownerRepository=ownerRepository;
     }
 
     @PostMapping("/")
@@ -35,9 +42,22 @@ public class CarController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Car> updateCar(@PathVariable Long id, @RequestBody Car carDetails) {
-        return ResponseEntity.ok(carService.updateCar(id, carDetails));
+    @PutMapping("/{carId}")
+    public Car updateCar(@PathVariable Long carId, @RequestBody Car carDetails) {
+        Car existingCar = carRepository.findById(carId)
+                .orElseThrow(() -> new RuntimeException("Car not found"));
+
+        Owner owner = ownerRepository.findById(carDetails.getOwner().getId())
+                .orElseThrow(() -> new RuntimeException("Owner not found"));
+
+        existingCar.setModel(carDetails.getModel());
+        existingCar.setBrand(carDetails.getBrand());
+        existingCar.setYear(carDetails.getYear());
+        existingCar.setPricePerDay(carDetails.getPricePerDay());
+        existingCar.setAvailable(carDetails.isAvailable());
+        existingCar.setOwner(owner);
+
+        return carRepository.save(existingCar);
     }
 
     @DeleteMapping("/{id}")

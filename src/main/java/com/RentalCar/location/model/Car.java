@@ -1,5 +1,6 @@
 package com.RentalCar.location.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,8 +20,9 @@ public class Car {
     private double pricePerDay;
     @Column(nullable = false)
     private boolean available = true;
-    @ManyToOne
-    @JoinColumn(name = "owner_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "owner_id", nullable = false)
+    @JsonBackReference
     private Owner owner;
 
 
