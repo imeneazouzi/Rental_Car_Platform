@@ -41,6 +41,7 @@ public class CarService {
         existingCar.setModel(carDetails.getModel());
         existingCar.setYear(carDetails.getYear());
         existingCar.setPricePerDay(carDetails.getPricePerDay());
+        existingCar.setOwner(carDetails.getOwner());
         return carRepository.save(existingCar);
     }
 

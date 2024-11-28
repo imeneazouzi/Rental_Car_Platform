@@ -1,0 +1,18 @@
+<h2>Car List</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Brand</th>
+      <th>Model</th>
+      <th>Price Per Day</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let car of cars">
+      <td>{{ car.brand }}</td>
+      <td>{{ car.model }}</td>
+      <td>{{ car.pricePerDay }}</td>
+      <td>{{ car.available }}</td>
+    </tr>
+  </tbody>
+</table>

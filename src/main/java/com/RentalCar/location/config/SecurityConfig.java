@@ -22,7 +22,7 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/cars/**").authenticated()
+                        .requestMatchers("/cars/**").permitAll()
                         .anyRequest().permitAll()
                 )
                 .httpBasic(httpBasic -> httpBasic.realmName("RentalCar"))
