@@ -3,5 +3,6 @@ export interface Car {
   brand: string;
   model: string;
   pricePerDay: number;
-  available: boolean
+  available: boolean;
+  imageUrl: string; 
 }

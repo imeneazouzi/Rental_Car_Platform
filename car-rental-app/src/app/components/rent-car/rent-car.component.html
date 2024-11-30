@@ -1,0 +1,41 @@
+<div class="container mt-5">
+  <h2 class="text-center">Car Rental Details</h2>
+  <div class="card">
+    <img
+      [src]="'http://localhost:8080' + car.imageUrl"
+      class="card-img-top"
+      alt="{{ car.brand }} {{ car.model }}"
+    />
+    <div class="card-body">
+      <h5 class="card-title">{{ car.brand }} - {{ car.model }}</h5>
+      <p class="card-text">
+        <strong>Price Per Day:</strong> ${{ car.pricePerDay }}<br />
+        <strong>Year:</strong> {{ car.year }}<br />
+        <strong>Available:</strong>
+        <span
+          class="badge"
+          [class.bg-success]="car.available"
+          [class.bg-danger]="!car.available"
+        >
+          {{ car.available ? 'Yes' : 'No' }}
+        </span>
+      </p>
+    </div>
+  </div>
+
+  <h3 class="mt-4">Owner Details</h3>
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">{{ car.owner.firstName }} {{ car.owner.lastName }}</h5>
+      <p class="card-text">
+        <strong>Email:</strong> {{ car.owner.email }}<br />
+        <strong>Phone:</strong> {{ car.owner.phone }}
+      </p>
+    </div>
+  </div>
+
+  <div class="mt-4 text-center">
+    <button class="btn btn-success">Confirm Rental</button>
+    <a class="btn btn-outline-secondary" routerLink="/">Cancel</a>
+  </div>
+</div>

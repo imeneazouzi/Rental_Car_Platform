@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import { CarListComponent } from './components/car-list/car-list.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CarService } from './services/car.service';
+import { RentCarComponent } from './components/rent-car/rent-car.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    CarListComponent
+    CarListComponent,
+    RentCarComponent
   ],
   imports: [
     BrowserModule,

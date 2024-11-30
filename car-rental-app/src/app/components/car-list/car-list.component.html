@@ -5,9 +5,10 @@
       <div class="card mb-4">
         <!-- Image de la voiture -->
         <img
-          src="https://via.placeholder.com/300x200.png?text={{ car.brand }}+{{ car.model }}"
+          [src]="'http://localhost:8080' + car.imageUrl"
           class="card-img-top"
           alt="{{ car.brand }} {{ car.model }}"
+
         />
         <div class="card-body">
           <h5 class="card-title">{{ car.brand }} - {{ car.model }}</h5>
@@ -21,14 +22,17 @@
             >
               {{ car.available ? 'Yes' : 'No' }}
             </span>
+
           </p>
-          <!-- Boutons interactifs -->
           <div class="d-flex justify-content-between">
-            <button class="btn btn-primary btn-sm">Rent Now</button>
+            <button class="btn btn-primary btn-sm" [routerLink]="['/rent', car.id]">
+              Rent Now
+            </button>
             <button class="btn btn-outline-secondary btn-sm">Details</button>
           </div>
         </div>
       </div>
     </div>
   </div>
+
 </div>
