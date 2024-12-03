@@ -1,9 +1,9 @@
 package com.RentalCar.location.services;
 
 import com.RentalCar.location.model.Car;
+import com.RentalCar.location.repository.CarRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import com.RentalCar.location.repository.CarRepository;
 
 import java.util.List;
 import java.util.Optional;
@@ -51,19 +51,28 @@ public class CarService {
         }
         carRepository.deleteById(id);
     }
+
     public void updateCarAvailability(Long carId, boolean available) {
         Car car = carRepository.findById(carId)
                 .orElseThrow(() -> new IllegalArgumentException("Car not found with id: " + carId));
         car.setAvailable(available);
         carRepository.save(car);
     }
+
     public List<Car> getAvailableCars() {
         return carRepository.findByAvailableTrue();
     }
 
 
-
     public void deleteAllCars() {
         carRepository.deleteAll();
+    }
+
+    public void updateCarImage(Long carId, String imageUrl) {
+        Car car = carRepository.findById(carId)
+                .orElseThrow(() -> new RuntimeException("Car not found"));
+
+        car.setImageUrl(imageUrl);
+        carRepository.save(car);
     }
 }

@@ -1,0 +1,15 @@
+.card {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: none;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.img-fluid {
+  max-height: 400px;
+  object-fit: cover;
+}

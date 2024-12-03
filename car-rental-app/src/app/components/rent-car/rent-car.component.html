@@ -1,41 +1,44 @@
-<div class="container mt-5">
-  <h2 class="text-center">Car Rental Details</h2>
+<div class="container my-5">
   <div class="card">
-    <img
-      [src]="'http://localhost:8080' + car.imageUrl"
-      class="card-img-top"
-      alt="{{ car.brand }} {{ car.model }}"
-    />
-    <div class="card-body">
-      <h5 class="card-title">{{ car.brand }} - {{ car.model }}</h5>
-      <p class="card-text">
-        <strong>Price Per Day:</strong> ${{ car.pricePerDay }}<br />
-        <strong>Year:</strong> {{ car.year }}<br />
-        <strong>Available:</strong>
-        <span
-          class="badge"
-          [class.bg-success]="car.available"
-          [class.bg-danger]="!car.available"
-        >
-          {{ car.available ? 'Yes' : 'No' }}
-        </span>
-      </p>
+    <div class="row g-0">
+      <!-- Image de la voiture -->
+      <div class="col-md-6">
+        <img
+        [src]="'http://localhost:8080' + car.imageUrl || 'https://via.placeholder.com/600x400?text=No+Image'"
+          class="img-fluid rounded-start"
+          alt="{{ car.brand }} {{ car.model }}"
+        />
+      </div>
+      <!-- Informations principales -->
+      <div class="col-md-6">
+        <div class="card-body">
+          <h3 class="card-title text-primary">{{ car.brand }} {{ car.model }}</h3>
+          <p class="card-text text-muted">
+            <strong>Year:</strong> {{ car.year }}<br />
+            <strong>Price Per Day:</strong> ${{ car.pricePerDay }}
+          </p>
+          <p class="card-text">
+            <strong>Availability:</strong>
+            <span
+              class="badge"
+              [class.bg-success]="car.available"
+              [class.bg-danger]="!car.available"
+            >
+              {{ car.available ? 'Available' : 'Not Available' }}
+            </span>
+          </p>
+          <hr />
+          <!-- Boutons d'action -->
+          <div class="d-flex gap-3">
+            <button class="btn btn-success px-4" [disabled]="!car.available">
+              Confirm Rental
+            </button>
+            <button class="btn btn-outline-secondary px-4" routerLink="/">
+              Back to List
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-
-  <h3 class="mt-4">Owner Details</h3>
-  <div class="card">
-    <div class="card-body">
-      <h5 class="card-title">{{ car.owner.firstName }} {{ car.owner.lastName }}</h5>
-      <p class="card-text">
-        <strong>Email:</strong> {{ car.owner.email }}<br />
-        <strong>Phone:</strong> {{ car.owner.phone }}
-      </p>
-    </div>
-  </div>
-
-  <div class="mt-4 text-center">
-    <button class="btn btn-success">Confirm Rental</button>
-    <a class="btn btn-outline-secondary" routerLink="/">Cancel</a>
   </div>
 </div>

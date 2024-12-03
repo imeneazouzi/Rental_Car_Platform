@@ -1,4 +1,4 @@
-import { Owner } from './owner.model';
+import { Owner } from "./owner";
 
 describe('Owner', () => {
   it('should create an instance', () => {

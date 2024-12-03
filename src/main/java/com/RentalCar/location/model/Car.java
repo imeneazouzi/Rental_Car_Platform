@@ -18,6 +18,7 @@ public class Car {
     private String brand;
     private int year;
     private double pricePerDay;
+    private String imageUrl;
     @Column(nullable = false)
     private boolean available = true;
     @ManyToOne(fetch = FetchType.LAZY)

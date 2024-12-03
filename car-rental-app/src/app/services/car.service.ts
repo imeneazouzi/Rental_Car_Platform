@@ -18,7 +18,8 @@ export class CarService {
     return this.http.post<Car>(this.apiUrl, car);
   }
   getCarById(id: number): Observable<Car> {
-    return this.http.get<Car>(`http://localhost:8080/cars/${id}`);
+    return this.http.get<Car>(`${this.apiUrl}/${id}`);
   }
+
 
 }

@@ -4,9 +4,13 @@ import com.RentalCar.location.model.Car;
 import com.RentalCar.location.model.Owner;
 import com.RentalCar.location.repository.CarRepository;
 import com.RentalCar.location.repository.OwnerRepository;
+import com.RentalCar.location.services.ImageService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.RentalCar.location.services.CarService;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -18,6 +22,8 @@ public class CarController {
     private CarService carService;
     private CarRepository carRepository;
     private OwnerRepository ownerRepository;
+    @Autowired
+    private ImageService imageService;
 
     public CarController(CarService carservice,CarRepository carRepository, OwnerRepository ownerRepository) {
         this.carService = carservice;
@@ -79,6 +85,18 @@ public class CarController {
     @GetMapping("/available")
     public List<Car> getAvailableCars() {
         return carService.getAvailableCars();
+    }
+
+
+    @PostMapping("/{carId}/upload-image")
+    public ResponseEntity<String> uploadCarImage(@PathVariable Long carId, @RequestParam("file") MultipartFile file) {
+        try {
+            String imageUrl = imageService.saveImage(carId, file);
+            carService.updateCarImage(carId, imageUrl);
+            return ResponseEntity.ok("Image uploaded successfully: " + imageUrl);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to upload image: " + e.getMessage());
+        }
     }
 
 }
