@@ -1,23 +1,33 @@
 <div class="container mt-5">
-  <h2 class="text-center">Owners List</h2>
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Email</th>
-        <th>Phone</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let owner of owners">
-        <td>{{ owner.id }}</td>
-        <td>{{ owner.firstName }}</td>
-        <td>{{ owner.lastName }}</td>
-        <td>{{ owner.email }}</td>
-        <td>{{ owner.phone }}</td>
-      </tr>
-    </tbody>
-  </table>
+  <h2 class="text-center mb-4">Owners</h2>
+  <div class="table-responsive">
+    <table class="table table-striped table-hover">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Cars Owned</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let owner of owners">
+          <td>{{ owner.id }}</td>
+          <td>{{ owner.firstName }}</td>
+          <td>{{ owner.lastName }}</td>
+          <td>{{ owner.email }}</td>
+          <td>{{ owner.phone }}</td>
+          <td>
+            <ul>
+              <li *ngFor="let car of owner.carsOwned || []">
+                {{ car.brand }} {{ car.model }} ({{ car.year }})
+              </li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

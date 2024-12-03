@@ -1,11 +1,11 @@
 <div class="container my-5">
-  <div class="card">
+  <div class="card shadow-sm">
     <div class="row g-0">
       <!-- Image de la voiture -->
-      <div class="col-md-6">
+      <div class="col-md-6 d-flex align-items-center justify-content-center bg-light">
         <img
-        [src]="'http://localhost:8080' + car.imageUrl || 'https://via.placeholder.com/600x400?text=No+Image'"
-          class="img-fluid rounded-start"
+          [src]="'http://localhost:8080' + car.imageUrl || 'https://via.placeholder.com/400x300?text=No+Image'"
+          class="fixed-img rounded"
           alt="{{ car.brand }} {{ car.model }}"
         />
       </div>
@@ -27,6 +27,16 @@
               {{ car.available ? 'Available' : 'Not Available' }}
             </span>
           </p>
+          <hr />
+          <!-- Informations sur le propriétaire -->
+          <div *ngIf="car.owner">
+            <h5 class="text-secondary">Owner Information</h5>
+            <p class="card-text">
+              <strong>Name:</strong> {{ car.owner.firstName}}<br />
+              <strong>Contact:</strong> {{ car.owner.phone }}<br />
+              <strong>Email:</strong> {{ car.owner.email }}
+            </p>
+          </div>
           <hr />
           <!-- Boutons d'action -->
           <div class="d-flex gap-3">

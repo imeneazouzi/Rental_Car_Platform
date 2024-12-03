@@ -14,8 +14,14 @@ export class OwnerListComponent implements OnInit {
   constructor(private ownerService: OwnerService) {}
 
   ngOnInit(): void {
-    this.ownerService.getOwners().subscribe((data) => {
-      this.owners = data;
+    this.ownerService.getOwners().subscribe({
+      next: (data: Owner[]) => {
+        console.log('Fetched owners:', data);
+        this.owners = data;
+      },
+      error: (error) => {
+        console.error('Error fetching owners:', error);
+      }
     });
   }
 }
