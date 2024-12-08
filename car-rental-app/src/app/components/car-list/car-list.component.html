@@ -1,41 +1,50 @@
 <div class="container mt-5">
   <h2 class="text-center mb-4">Rental Car List</h2>
   <div class="row">
+    <!-- Boucle sur la liste des voitures -->
     <div class="col-md-4" *ngFor="let car of cars">
       <div class="card mb-4">
         <!-- Image de la voiture -->
         <img
           [src]="'http://localhost:8080' + car.imageUrl"
           class="card-img-top"
-          alt="{{ car.brand }} {{ car.model }}"
-
+          [alt]="car.brand + ' ' + car.model"
         />
         <div class="card-body">
+          <!-- Titre de la voiture -->
           <h5 class="card-title">{{ car.brand }} - {{ car.model }}</h5>
           <p class="card-text">
             <strong>Price Per Day:</strong> ${{ car.pricePerDay }}<br />
             <strong>Available:</strong>
             <span
               class="badge"
-              [class.bg-success]="car.available"
-              [class.bg-danger]="!car.available"
+              [ngClass]="{
+                'bg-success': car.available,
+                'bg-danger': !car.available
+              }"
             >
               {{ car.available ? 'Yes' : 'No' }}
             </span>
-
           </p>
           <div class="d-flex justify-content-between">
-            <button class="btn btn-primary btn-sm" [routerLink]="['/rent', car.id]">
+            <!-- Bouton Rent Now -->
+            <button
+              class="btn btn-primary btn-sm"
+              [routerLink]="['/rent', car.id]"
+              [disabled]="!car.available"
+            >
               Rent Now
             </button>
-          <button class="btn btn-outline-secondary btn-sm" [routerLink]="['/details']">
-            Details
-          </button>
-
+            <!-- Bouton Details -->
+            <button
+              class="btn btn-outline-secondary btn-sm"
+              [routerLink]="['/details', car.id]"
+            >
+              Details
+            </button>
           </div>
         </div>
       </div>
     </div>
   </div>
-
 </div>

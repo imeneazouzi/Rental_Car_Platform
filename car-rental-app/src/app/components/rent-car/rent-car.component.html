@@ -1,54 +1,16 @@
-<div class="container my-5">
-  <div class="card shadow-sm">
-    <div class="row g-0">
-      <!-- Image de la voiture -->
-      <div class="col-md-6 d-flex align-items-center justify-content-center bg-light">
-        <img
-          [src]="'http://localhost:8080' + car.imageUrl || 'https://via.placeholder.com/400x300?text=No+Image'"
-          class="fixed-img rounded"
-          alt="{{ car.brand }} {{ car.model }}"
-        />
-      </div>
-      <!-- Informations principales -->
-      <div class="col-md-6">
-        <div class="card-body">
-          <h3 class="card-title text-primary">{{ car.brand }} {{ car.model }}</h3>
-          <p class="card-text text-muted">
-            <strong>Year:</strong> {{ car.year }}<br />
-            <strong>Price Per Day:</strong> ${{ car.pricePerDay }}
-          </p>
-          <p class="card-text">
-            <strong>Availability:</strong>
-            <span
-              class="badge"
-              [class.bg-success]="car.available"
-              [class.bg-danger]="!car.available"
-            >
-              {{ car.available ? 'Available' : 'Not Available' }}
-            </span>
-          </p>
-          <hr />
-          <!-- Informations sur le propriétaire -->
-          <div *ngIf="car.owner">
-            <h5 class="text-secondary">Owner Information</h5>
-            <p class="card-text">
-              <strong>Name:</strong> {{ car.owner.firstName}}<br />
-              <strong>Contact:</strong> {{ car.owner.phone }}<br />
-              <strong>Email:</strong> {{ car.owner.email }}
-            </p>
-          </div>
-          <hr />
-          <!-- Boutons d'action -->
-          <div class="d-flex gap-3">
-            <button class="btn btn-success px-4" [disabled]="!car.available">
-              Confirm Rental
-            </button>
-            <button class="btn btn-outline-secondary px-4" routerLink="/">
-              Back to List
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+<div *ngIf="selectedCar && selectedOwner">
+  <h3>Détails de la location</h3>
+
+  <!-- Détails de la voiture -->
+  <h4>Voiture : {{ selectedCar.brand }} {{ selectedCar.model }}</h4>
+  <p>Prix par jour : {{ selectedCar.pricePerDay }}€</p>
+
+  <!-- Détails du propriétaire -->
+  <h4>Propriétaire : {{ selectedOwner.firstName }} {{ selectedOwner.lastName }}</h4>
+  <p>Email : {{ selectedOwner.email }}</p>
+  <p>Téléphone : {{ selectedOwner.phone }}</p>
+</div>
+
+<div *ngIf="!selectedCar || !selectedOwner">
+  <p>Aucune voiture ou propriétaire sélectionné.</p>
 </div>
