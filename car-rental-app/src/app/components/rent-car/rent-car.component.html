@@ -1,20 +1,18 @@
-<div class="container mt-5">
-  <div *ngIf="selectedCar && selectedOwner; else noSelection">
-    <div class="card shadow-lg border-0">
+<div *ngIf="selectedCar && selectedOwner; else noSelection">
+  <div class="container">
+    <div class="card shadow-lg border-0 mb-4 mx-auto">
       <div class="row g-0">
-        <!-- Image de la voiture -->
-        <div class="col-md-6">
+        <div class="col-md-4">
           <img
             [src]="'http://localhost:8080' + selectedCar.imageUrl"
             class="img-fluid rounded-start"
             [alt]="selectedCar.brand + ' ' + selectedCar.model"
+            style="object-fit: cover; height: 100%; max-height: 250px;"
           />
         </div>
 
-        <!-- Détails de la voiture et du propriétaire -->
-        <div class="col-md-6">
+        <div class="col-md-8">
           <div class="card-body">
-            <!-- Détails de la voiture -->
             <h3 class="card-title text-primary">
               {{ selectedCar.brand }} {{ selectedCar.model }}
             </h3>
@@ -35,28 +33,49 @@
               </span>
             </p>
 
-            <!-- Détails du propriétaire -->
-            <h4 class="mt-4">Informations du propriétaire</h4>
-            <p class="mb-1">
-              <i class="bi bi-person-fill me-2 text-secondary"></i>
-              {{ selectedOwner.firstName }} {{ selectedOwner.lastName }}
-            </p>
-            <p class="mb-1">
-              <i class="bi bi-envelope-fill me-2 text-secondary"></i>
-              {{ selectedOwner.email }}
-            </p>
-            <p>
-              <i class="bi bi-telephone-fill me-2 text-secondary"></i>
-              {{ selectedOwner.phone }}
-            </p>
+            <div class="owner-info">
+              <h4>Informations du propriétaire</h4>
+              <p>
+                <i class="bi bi-person-fill me-2 text-secondary"></i>
+                {{ selectedOwner.firstName }} {{ selectedOwner.lastName }}
+              </p>
+              <p>
+                <i class="bi bi-envelope-fill me-2 text-secondary"></i>
+                {{ selectedOwner.email }}
+              </p>
+              <p>
+                <i class="bi bi-telephone-fill me-2 text-secondary"></i>
+                {{ selectedOwner.phone }}
+              </p>
+            </div>
 
-            <!-- Actions -->
-            <div class="mt-4">
-              <button class="btn btn-primary me-2">
-                Confirmer la location
-              </button>
-              <button class="btn btn-outline-secondary" [routerLink]="['/']">
-                Retour à la liste
+            <div class="mt-4 d-flex justify-content-start">
+              <button class="btn btn-primary me-2">Confirm Rental</button>
+              <button class="btn btn-outline-secondary" [routerLink]="['/']">Back to list</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-5">
+      <h4 class="text-center">Autres voitures disponibles</h4>
+      <div class="row">
+        <div class="col-md-4" *ngFor="let car of otherCars">
+          <div class="card mb-4">
+            <img
+              [src]="'http://localhost:8080' + car.imageUrl"
+              class="card-img-top"
+              [alt]="car.brand + ' ' + car.model"
+              style="object-fit: cover; height: 200px;"
+            />
+            <div class="card-body">
+              <h5 class="card-title">{{ car.brand }} - {{ car.model }}</h5>
+              <p class="card-text">
+                <strong>Prix par jour:</strong> ${{ car.pricePerDay }}
+              </p>
+              <button class="btn btn-outline-primary" [routerLink]="['/rent', car.id]">
+                Rent Car
               </button>
             </div>
           </div>
@@ -64,12 +83,11 @@
       </div>
     </div>
   </div>
-
-  <!-- Message si aucune voiture ou propriétaire n'est sélectionné -->
-  <ng-template #noSelection>
-    <div class="alert alert-warning text-center" role="alert">
-      <i class="bi bi-exclamation-triangle-fill me-2"></i>
-      Aucune voiture ou propriétaire sélectionné.
-    </div>
-  </ng-template>
 </div>
+
+<ng-template #noSelection>
+  <div class="alert alert-warning text-center" role="alert">
+    <i class="bi bi-exclamation-triangle-fill me-2"></i>
+    Aucune voiture ou propriétaire sélectionné.
+  </div>
+</ng-template>
