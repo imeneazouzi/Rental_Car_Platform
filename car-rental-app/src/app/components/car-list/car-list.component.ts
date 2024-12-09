@@ -14,7 +14,15 @@ export class CarListComponent implements OnInit {
   cars: Car[] = [];
   owners: Owner[] = [];
   selectedCar?: Car;
-  selectedOwner?: Owner; 
+  selectedOwner?: Owner;
+  filteredCars: Car[] = [];
+  brands: string[] = [];
+  models: string[] = [];
+  years: number[] = [];
+  selectedBrand: string = '';
+  selectedModel: string = '';
+  selectedYear: number | null = null;
+  selectedAvailable: string = '';
 
   constructor(
     private carService: CarService,
@@ -24,10 +32,24 @@ export class CarListComponent implements OnInit {
   ngOnInit(): void {
     this.carService.getCarsList().subscribe((data: Car[]) => {
       this.cars = data;
+      this.filteredCars = this.cars;
+      this.brands = Array.from(new Set(data.map(car => car.brand)));
+      this.models = Array.from(new Set(data.map(car => car.model)));
+      this.years = Array.from(new Set(data.map(car => car.year)));
     });
 
     this.ownerService.getOwners().subscribe((data: Owner[]) => {
       this.owners = data;
+    });
+  }
+  filterCars(): void {
+    this.filteredCars = this.cars.filter(car => {
+      return (
+        (this.selectedBrand ? car.brand === this.selectedBrand : true) &&
+        (this.selectedModel ? car.model === this.selectedModel : true) &&
+        (this.selectedYear ? car.year === this.selectedYear : true) &&
+        (this.selectedAvailable ? car.available.toString() === this.selectedAvailable : true)
+      );
     });
   }
 

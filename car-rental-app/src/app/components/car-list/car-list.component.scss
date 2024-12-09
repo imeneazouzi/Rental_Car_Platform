@@ -1,45 +1,145 @@
-.card {
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+.car-list-container {
+  min-height: 100vh;
+  background-color: #f8f9fa;
+}
+
+
+.filter-section {
+  background-image: url('../../../assets/cars/bgg.jpg');
+  background-size: cover;
+  background-position: center;
+  padding: 160px 0;
+  text-align: center;
+  position: relative;
+  color: white;
   border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+
+.filter-overlay {
+  background: rgba(0, 0, 0, 0.4);
+  padding: 30px;
+  border-radius: 10px;
+  margin-left: 100px ;
+  margin-right: 100px;
 }
 
-.card-img-top {
-  height: 200px;
-  object-fit: cover;
-}
 
 h2 {
   font-weight: bold;
-  color: #343a40;
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
-.btn-primary {
-  background-color: #007bff;
-  border: none;
+
+.filter-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  gap: 20px;
 }
 
-.btn-primary:hover {
-  background-color: #0056b3;
+
+.filter {
+  width: 22%;
+  min-width: 220px;
+  margin-bottom: 15px;
+  position: relative;
 }
 
-.btn-outline-secondary {
-  border-color: #6c757d;
+
+.filter-label {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: white;
+  display: block;
+  margin-bottom: 5px;
+  text-transform: uppercase;
 }
 
-.btn-outline-secondary:hover {
-  background-color: #6c757d;
-  color: #fff;
-}
-.card-img-top {
+
+.custom-select select {
   width: 100%;
-  height: 200px;
-  object-fit: cover;
+  padding: 12px;
   border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: white;
+  color: #333;
+  font-size: 1rem;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.custom-select select:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+
+.car-list {
+  padding: 20px 15px;
+}
+
+.card {
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+/* Image de la voiture */
+.card-img-top {
+  height: 250px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+
+.card-body {
+  padding: 15px;
+}
+
+.card-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.card-text {
+  font-size: 1rem;
+  margin-bottom: 15px;
+}
+
+button {
+  font-size: 0.9rem;
+}
+
+.card-body .badge {
+  font-size: 0.9rem;
+  padding: 5px 10px;
+}
+
+
+button:hover {
+  opacity: 0.8;
+}
+
+
+@media (max-width: 768px) {
+  .filter-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .filter {
+    width: 100%;
+    margin-bottom: 15px;
+  }
 }

@@ -8,6 +8,7 @@ import { CarService } from './services/car.service';
 import { OwnerListComponent } from './components/owner-list/owner-list.component';
 import { RentCarComponent } from './components/rent-car/rent-car.component';
 import { DetailsComponent } from './details/details.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { DetailsComponent } from './details/details.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
     HttpClientModule
   ],
   providers: [CarService],
