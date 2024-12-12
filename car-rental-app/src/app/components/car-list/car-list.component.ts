@@ -8,7 +8,7 @@ import { OwnerService } from '../../services/owner.service';
   selector: 'app-car-list',
   standalone: false,
   templateUrl: './car-list.component.html',
-  styleUrls: ['./car-list.component.scss'] // Correction : styleUrls est un tableau
+  styleUrls: ['./car-list.component.scss'] 
 })
 export class CarListComponent implements OnInit {
   cars: Car[] = [];
